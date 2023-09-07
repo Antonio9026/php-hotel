@@ -54,16 +54,52 @@ $hotels = [
 </head>
 
 <body>
-    <ul>
+    <!-- stampa senza grafica  -->
+    <!-- <ul>
         <?php foreach ($hotels as $hotel) { ?>
             <li> <?php echo $hotel["name"] ?></li>
             <li> <?php echo $hotel["description"] ?></li>
             <li> <?php echo $hotel["parking"] ?></li>
             <li> <?php echo $hotel["vote"] ?></li>
             <li> <?php echo $hotel["distance_to_center"] ?></li>
-            
+
         <?php } ?>
-    </ul>
+    </ul> -->
+
+<!-- --------------------------------------------------------------------- -->
+
+
+
+ <!-- stampa con tabella bootstrap -->
+
+    <div class="container">
+      
+        <table class="table table-hover table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <?php foreach ($hotels[0] as $key => $hotel) { ?>
+      <th scope="col"><?php echo $key ?></th>
+     
+      <?php }?>
+    </tr>
+  </thead>
+  <tbody>
+  <?php foreach ($hotels as $key => $hotel) { ?>
+    <tr>
+      <th scope="row"></th>
+     
+      <td><?php echo $hotel["name"] ?></td>
+      <td><?php echo $hotel["description"] ?></td>
+      <td><?php echo $hotel["parking"] ?></td>
+      <td><?php echo $hotel["vote"] ?></td>
+      <td><?php echo $hotel["distance_to_center"] ?></td>
+  
+    </tr>
+    <?php }?>
+  </tbody>
+</table>
+    </div>
 </body>
 
 </html>
