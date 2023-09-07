@@ -39,7 +39,12 @@ $hotels = [
     ],
 
 ];
+// salvo dentro una variabile il voto cercato 
+$voto =$_GET["voto"] ?? " ";
 
+// salvo dentro una variabile se c'è un parcheggio  
+$parcheggio = isset($_GET["parcheggio"]) &&
+$_GET["parcheggio"] ?? "yes"   ;
 ?>
 
 
@@ -85,7 +90,13 @@ $hotels = [
     </tr>
   </thead>
   <tbody>
-  <?php foreach ($hotels as $key => $hotel) { ?>
+  <?php foreach ($hotels as $key => $hotel) { 
+    $filteredHotels = !$voto || ($voto && str_contains(($hotel["vote"]),($voto)));
+    $filteredParking = !$parcheggio || ($parcheggio && str_contains(($hotel["parking"]),($parcheggio)));
+    if ( $filteredHotels &&  $filteredParking  ) {
+       
+  
+        ?>
     <tr>
       <th scope="row"></th>
      
@@ -96,9 +107,27 @@ $hotels = [
       <td><?php echo $hotel["distance_to_center"] ?></td>
   
     </tr>
-    <?php }?>
+    <?php   }}?>
   </tbody>
 </table>
+<form class="form-inline" action="">
+  <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Preference</label>
+  <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref"  name="voto">
+    <option value=""></option>
+    <option value="1">1 stella </option>
+    <option value="2">2 stelle</option>
+    <option value="3">3 stelle</option>
+    <option value="4">4 stelle</option>
+    <option value="5">5 stelle</option>
+  </select>
+
+  <div class="custom-control custom-checkbox my-1 mr-sm-2">
+    <input type="checkbox" class="custom-control-input" id="customControlInline" value="yes" name="parcheggio">
+    <label for="parcheggio" class="custom-control-label">Parcheggio ?</label>
+  </div>
+
+  <button type="submit" class="btn btn-primary my-1">Submit</button>
+</form>
     </div>
 </body>
 
