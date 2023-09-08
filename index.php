@@ -40,7 +40,7 @@ $hotels = [
 
 ];
 // salvo dentro una variabile il voto cercato 
-$voto =$_GET["voto"] ?? " ";
+$voto =$_GET["voto"] ?? "";
 
 // salvo dentro una variabile se c'è un parcheggio  
 $parcheggio = isset($_GET["parcheggio"]) &&
@@ -93,7 +93,7 @@ $_GET["parcheggio"] ?? "yes"   ;
   <?php foreach ($hotels as $key => $hotel) { 
     $filteredHotels = !$voto || ($voto && str_contains(($hotel["vote"]),($voto)));
     $filteredParking = !$parcheggio || ($parcheggio && str_contains(($hotel["parking"]),($parcheggio)));
-    if ( $filteredHotels &&  $filteredParking  ) {
+    if ( $filteredHotels ||  $filteredParking  ) {
        
   
         ?>
